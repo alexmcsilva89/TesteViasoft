@@ -20,6 +20,8 @@ var
 begin
   Writeln('Informe a quantidade de números do conjunto: ');
   ReadLn(LQtde);
+  if LQtde <=0 then
+    raise Exception.Create('valor inválido!');
   LNetWork := TFactoryNetwork.NewNewtork(LQtde);
   LMenu := '---------------MENU---------------'+#10#13+
            '1 - Conectar Elementos            '+#10#13+
