@@ -35,6 +35,7 @@ type
     function BuscaNaLista(aNumElement1: Integer; aNumElement2: Integer): Boolean;
   public
     constructor Create(aNumElement: Integer);
+    destructor Destroy;override;
     procedure Conectar(aNumElement1: Integer; aNumElement2: Integer);
     function Consultar(aNumElement1: Integer; aNumElement2: Integer): Boolean;
     function ExibirConjunto: String;
@@ -136,6 +137,16 @@ begin
     FListNums.Destroy;
     FListConections.Destroy;
   end;
+end;
+
+destructor TNetwork.Destroy;
+var
+  Value: TConexoes;
+begin
+  for Value in FListConections.Values do
+    Value.Destroy;
+  FListConections.Destroy;
+  inherited;
 end;
 
 function TNetwork.ExibirConjunto: String;
